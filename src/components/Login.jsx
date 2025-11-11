@@ -1,19 +1,6 @@
-import { use } from "react";
 import { Link } from "react-router";
-import { toast } from "react-toastify";
-import { AuthContext } from "../contexts/AuthContext";
 const Login = () => {
-  const { signInWithGoogle } = use(AuthContext);
-  const handleGoogleLogin = () => {
-    signInWithGoogle()
-      .then((result) => {
-        console.log(result.user);
-      })
-      .catch((e) => {
-        console.log(e);
-        toast.error(e.message);
-      });
-  };
+  const handleGoogleLogin = () => {};
   return (
     <div className="min-h-[calc(100vh-20px)] flex items-center justify-center bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600 relative overflow-hidden">
       {/* Animated glow orbs */}
@@ -71,27 +58,6 @@ const Login = () => {
             >
               Log In
             </button>
-
-            {/* Divider */}
-            <div className="flex items-center justify-center gap-2 my-2">
-              <div className="h-px w-16 bg-white/30"></div>
-              <span className="text-sm text-white/70">or</span>
-              <div className="h-px w-16 bg-white/30"></div>
-            </div>
-            {/* Google Signin */}
-            <button
-              type="button"
-              onClick={handleGoogleLogin}
-              className="flex items-center justify-center gap-3 bg-white text-gray-800 px-5 py-2 rounded-lg w-full font-semibold hover:bg-gray-100 transition-colors cursor-pointer"
-            >
-              <img
-                src="https://www.svgrepo.com/show/475656/google-color.svg"
-                alt="google"
-                className="w-5 h-5"
-              />
-              Continue with Google
-            </button>
-
             <p className="text-center text-sm text-white/80 mt-3">
               Don’t have an account?{" "}
               <Link

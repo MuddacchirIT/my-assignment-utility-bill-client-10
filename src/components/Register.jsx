@@ -2,6 +2,7 @@ import { use } from "react";
 import { FaEye } from "react-icons/fa";
 import { IoEyeOff } from "react-icons/io5";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 import { AuthContext } from "../contexts/AuthContext";
 const Register = () => {
   const { show, setShow, signInWithGoogle } = use(AuthContext);
@@ -9,6 +10,23 @@ const Register = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
+        const newUser = {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+        };
+        // create user in the database
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        });
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data after user save", data);
       })
       .catch((e) => {
         console.log(e);
