@@ -48,7 +48,7 @@ const Navbar = () => {
               </li>
               <li className="mx-1 px-2">
                 <MyLink to="/allbills" className="flex gap-">
-                  <h1 className="text-lg font-semibold">All Bills</h1>
+                  <h1 className="text-lg font-semibold">All Utility</h1>
                 </MyLink>
               </li>
               {user && (
@@ -89,7 +89,7 @@ const Navbar = () => {
             </li>
             <li className="mx-1 px-2">
               <MyLink to="/allbills" className="flex gap-2">
-                <h1 className="text-lg font-semibold">All Bill</h1>
+                <h1 className="text-lg font-semibold">All Utility</h1>
               </MyLink>
             </li>
             {user && (

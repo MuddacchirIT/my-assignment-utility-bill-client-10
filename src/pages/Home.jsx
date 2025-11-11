@@ -1,18 +1,24 @@
+import LatestBills from "../components/LatestBills";
+const latestBillsPromise = fetch("http://localhost:3000/latest-bills").then(
+  (res) => res.json()
+);
 const Home = () => {
   return (
     <div>
       <div className="text-center space-y-10 mt-10">
         <h1 className="text-[#001931] text-4xl md:text-5xl lg:text-6xl font-bold">
           <span className="bg-gradient-to-r from-[#632EE3] to-[#9F62F2] bg-clip-text text-transparent animate-[pulse_3s_infinite]">
-            Toy
+            Utility
           </span>
-          <span className="text-[#074f92]">Topia</span>
+          <span className="text-[#074f92]"> Bills</span>
         </h1>
         <p className="text-lg text-[#00193190]">
-          A vibrant and playful online marketplace for kids' toys, encouraging
-          families to discover and support local toy sellers.. Users can log in,
-          browse toys, view detailed info, and leave feedback or ratings for
-          toys they want to buy for their kids.
+          A utility bill is a monthly statement detailing the cost of essential
+          services like water, gas, and electricity, and can also include other
+          services such as sewage, trash collection, and internet. It includes
+          your personal information, account number, usage details, the amount
+          owed, and the payment due date. Paying these bills on time is
+          important to avoid penalties or service interruptions.
         </p>
       </div>
       <div>
@@ -20,13 +26,15 @@ const Home = () => {
       </div>
       <div className="text-center space-y-5 my-15">
         <h2 className="text-3xl md:text-4xl lg:text-5xl text-[#01182c] font-bold">
-          Toy Topia Available Here
+          Online Utility Bills Payment System
         </h2>
         <p className="text-md md:text-lg text-[#00193199]">
-          Kids Toy Store Platform the Market developed by MuddacchirIT
+          Utility bills payment the online syetem developed by MuddacchirIT
         </p>
       </div>
-      <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 bg-gray-50 p-3 rounded-lg"></div>
+      <div>
+        <LatestBills latestBillsPromise={latestBillsPromise}></LatestBills>
+      </div>
     </div>
   );
 };
