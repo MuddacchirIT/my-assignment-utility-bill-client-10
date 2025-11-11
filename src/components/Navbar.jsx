@@ -1,7 +1,20 @@
+import { use } from "react";
 import { Link } from "react-router";
 import logo from "../assets/images/utility-bill-logo.webp";
+import { AuthContext } from "../contexts/AuthContext";
 import MyLink from "./MyLink";
 const Navbar = () => {
+  const { user, logOutUser } = use(AuthContext);
+  const handleLogOut = () => {
+    logOutUser()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((e) => {
+        console.log(e);
+        toast.error(e.message);
+      });
+  };
   return (
     <div className="navbar bg-base-100 shadow-sm bg-gradient-to-r from-[#e7e3d5] via-[#e3d9e7] to-[#c6c2cc]">
       <div className="navbar max-w-[1600px] mx-auto">
@@ -38,22 +51,26 @@ const Navbar = () => {
                   <h1 className="text-lg font-semibold">All Bills</h1>
                 </MyLink>
               </li>
-              <li className="mx-1 px-2">
-                <MyLink to="/mybills" className="flex gap-3">
-                  <h1 className="text-lg font-semibold">My Bills</h1>
-                </MyLink>
-              </li>
-              {/* added */}
-              <li className="mx-1 px-2">
-                <MyLink to="/mypaid" className="flex gap-3">
-                  <h1 className="text-lg font-semibold">Paid Bills</h1>
-                </MyLink>
-              </li>
-              <li className="mx-1 px-2">
-                <MyLink to="/payment" className="flex gap-3">
-                  <h1 className="text-lg font-semibold">Payment</h1>
-                </MyLink>
-              </li>
+              {user && (
+                <>
+                  <li className="mx-1 px-2">
+                    <MyLink to="/mybills" className="flex gap-3">
+                      <h1 className="text-lg font-semibold">My Bills</h1>
+                    </MyLink>
+                  </li>
+                  {/* added */}
+                  <li className="mx-1 px-2">
+                    <MyLink to="/mypaid" className="flex gap-3">
+                      <h1 className="text-lg font-semibold">Paid Bills</h1>
+                    </MyLink>
+                  </li>
+                  <li className="mx-1 px-2">
+                    <MyLink to="/payment" className="flex gap-3">
+                      <h1 className="text-lg font-semibold">Payment</h1>
+                    </MyLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <div className="flex items-center gap-3">
@@ -75,31 +92,43 @@ const Navbar = () => {
                 <h1 className="text-lg font-semibold">All Bill</h1>
               </MyLink>
             </li>
-            <li className="mx-1 px-2">
-              <MyLink to="/mybills" className="flex gap-2">
-                <h1 className="text-lg font-semibold">My Bill</h1>
-              </MyLink>
-            </li>
-            {/* added */}
-            <li className="mx-1 px-2">
-              <MyLink to="/mypaid" className="flex gap-2">
-                <h1 className="text-lg font-semibold">Paid Bill</h1>
-              </MyLink>
-            </li>
-            <li className="mx-1 px-2">
-              <MyLink to="/payment" className="flex gap-2">
-                <h1 className="text-lg font-semibold">Payment</h1>
-              </MyLink>
-            </li>
+            {user && (
+              <>
+                <li className="mx-1 px-2">
+                  <MyLink to="/mybills" className="flex gap-2">
+                    <h1 className="text-lg font-semibold">My Bill</h1>
+                  </MyLink>
+                </li>
+                {/* added */}
+                <li className="mx-1 px-2">
+                  <MyLink to="/mypaid" className="flex gap-2">
+                    <h1 className="text-lg font-semibold">Paid Bill</h1>
+                  </MyLink>
+                </li>
+                <li className="mx-1 px-2">
+                  <MyLink to="/payment" className="flex gap-2">
+                    <h1 className="text-lg font-semibold">Payment</h1>
+                  </MyLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <div className="navbar-end gap-4">
-          <button className="bg-purple-500 text-white px-4 py-2 rounded-md font-semibold cursor-pointer">
-            <Link to={"/login"}>Log in</Link>
-          </button>
-          <button className="bg-amber-500 text-gray-900 px-4 py-2 rounded-md font-semibold cursor-pointer">
-            <Link to={"/register"}>Register</Link>
-          </button>
+          {user ? (
+            <a
+              onClick={handleLogOut}
+              className="bg-purple-500 text-white px-4 py-2 rounded-md font-semibold cursor-pointer"
+            >
+              <Link to={"/login"}>Log Out</Link>
+            </a>
+          ) : (
+            <div>
+              <button className="bg-purple-500 text-white px-4 py-2 rounded-md font-semibold cursor-pointer">
+                <Link to={"/login"}>Log in</Link>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
