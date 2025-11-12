@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import AllBills from "../components/AllBills";
+import BillDetails from "../components/BillDetails";
 import ErrorPage from "../components/ErrorPage";
 import Login from "../components/Login";
 import MyBills from "../components/MyBills";
@@ -20,6 +21,12 @@ const router = createBrowserRouter([
       {
         path: "/allbills",
         element: <AllBills></AllBills>,
+      },
+      {
+        path: "/billdetails/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/bills/${params.id}`),
+        element: <BillDetails></BillDetails>,
       },
       {
         path: "/mybills",
