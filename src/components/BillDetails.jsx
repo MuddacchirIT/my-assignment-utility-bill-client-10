@@ -1,27 +1,23 @@
 import { use, useEffect, useRef, useState } from "react";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
-import downloadImg from "../assets/images/icon-downloads.png";
-import {
-  default as ratingAvg,
-  default as ratingImg,
-} from "../assets/images/icon-ratings.png";
-import reviewImg from "../assets/images/icon-review.png";
 import { AuthContext } from "../contexts/AuthContext";
 const BillDetails = () => {
   const card = useLoaderData();
-  const [billPaid, setBillPaid] = useState([]);
   const {
     _id: billID,
     title,
     category,
     amount,
     image,
+    location,
     date,
     description,
+    company_email,
   } = card;
   const payModalRef = useRef(null);
   const { user } = use(AuthContext);
+  const [billPaid, setBillPaid] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:3000/payment/bybill/${billID}`)
       .then((res) => res.json())
@@ -30,6 +26,7 @@ const BillDetails = () => {
         setBillPaid(data);
       });
   }, [billID]);
+
   const handlePayBills = () => {
     payModalRef.current.showModal();
   };
@@ -79,30 +76,27 @@ const BillDetails = () => {
           />
         </figure>
         <div className="space-y-6">
-          <h2 className="text-4xl font-bold">{title}</h2>
-          <h3 className="text-xl font-semibold">
-            Developed by <span className="text-blue-600">{amount}</span>
-          </h3>
+          <h2 className="text-4xl font-bold">
+            TK. <span className="text-blue-600">{amount}</span>
+          </h2>
+          <h3 className="text-xl font-semibold"></h3>
           <div className="flex justify-center space-x-20">
             <div className="flex justify-center gap-2.5">
               <div className="mb-10">
-                <img className="w-9" src={downloadImg} alt="" />
-                <p className="text-lg">Downloads</p>
-                <h2 className="text-5xl font-bold">{date}</h2>
+                <h2 className="text-5xl font-bold">{title}</h2>
               </div>
             </div>
             <div className="flex justify-center gap-2.5">
               <div>
-                <img className="w-9" src={ratingImg} alt="" />
-                <p className="text-lg">Avarage Ratings</p>
-                <h2 className="text-5xl font-bold">{ratingAvg}</h2>
+                <h2 className="text-5xl font-bold">{location}</h2>
               </div>
             </div>
             <div className=" gap-2.5">
               <div>
-                <img className="w-9" src={reviewImg} alt="" />
-                <p className="text-lg">Total Reviews</p>
-                <h2 className="text-5xl font-bold">{date}</h2>
+                <h2 className="text-3xl font-bold">{date}</h2>
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold">{company_email}</h2>
               </div>
             </div>
           </div>
@@ -164,61 +158,60 @@ const BillDetails = () => {
               </div>
             </dialog>
           </div>
-          <div>
-            <h3>
-              Paid Bill is <span>{billPaid.length}</span>
-            </h3>
-            <div className="overflow-x-auto">
-              <table className="table">
-                {/* head */}
-                <thead>
-                  <tr>
-                    <th>SL</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Amount</th>
-                    <th>Done</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {billPaid.map((paid, index) => (
-                    <tr>
-                      <th>{index + 1}</th>
-                      <td>
-                        <div className="flex items-center gap-3">
-                          <div className="avatar">
-                            <div className="mask mask-squircle h-12 w-12">
-                              <img
-                                src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                alt="Avatar Tailwind CSS Component"
-                              />
-                            </div>
-                          </div>
-                          <div>
-                            <div className="font-bold">{paid.buyer_name}</div>
-                            <div className="text-sm opacity-50"></div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>{paid.buyer_email}</td>
-                      <td>{paid.buyer_amount}</td>
-                      <th>
-                        <button className="btn btn-ghost btn-xs">
-                          details
-                        </button>
-                      </th>
-                    </tr>
-                  ))}
-                  {/* row 1 */}
-                </tbody>
-              </table>
-            </div>
-          </div>
         </div>
       </div>
       <div className="max-w-[1600px] mx-auto py-6">
         <h2 className="text-3xl font-bold text-[#06223b]">{category}</h2>
         <p className="text-lg mt-3 text-[#001931]">{description}</p>
+      </div>
+      <div className="max-w-[1600px] mx-auto my-10 h-[600px]">
+        <h3 className="text-3xl font-semibold text-blue-700 my-5">
+          Paid Bill (<span>{billPaid.length})</span>
+        </h3>
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th className="text-lg">SL</th>
+                <th className="text-lg">Name</th>
+                <th className="text-lg">Email</th>
+                <th className="text-lg">Amount</th>
+                <th className="text-lg">Done</th>
+              </tr>
+            </thead>
+            <tbody>
+              {billPaid.map((paid, index) => (
+                <tr>
+                  <th>{index + 1}</th>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle h-12 w-12">
+                          <img
+                            src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="font-bold text-md">
+                          {paid.buyer_name}
+                        </div>
+                        <div className="text-sm opacity-50"></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{paid.buyer_email}</td>
+                  <td>{paid.buyer_amount}</td>
+                  <th>
+                    <button className="btn btn-ghost btn-xs">details</button>
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

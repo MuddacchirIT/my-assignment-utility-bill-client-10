@@ -1,5 +1,5 @@
 const MyBills = () => {
-  return <div>Hik, this is myBills</div>;
+  return <div></div>;
 };
 
 export default MyBills;
