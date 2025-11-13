@@ -59,16 +59,6 @@ const Navbar = () => {
                     </MyLink>
                   </li>
                   {/* added */}
-                  <li className="mx-1 px-2">
-                    <MyLink to="/mypaid" className="flex gap-3">
-                      <h1 className="text-lg font-semibold">Paid Bills</h1>
-                    </MyLink>
-                  </li>
-                  <li className="mx-1 px-2">
-                    <MyLink to="/payment" className="flex gap-3">
-                      <h1 className="text-lg font-semibold">Payment</h1>
-                    </MyLink>
-                  </li>
                 </>
               )}
             </ul>
@@ -100,16 +90,6 @@ const Navbar = () => {
                   </MyLink>
                 </li>
                 {/* added */}
-                <li className="mx-1 px-2">
-                  <MyLink to="/mypaid" className="flex gap-2">
-                    <h1 className="text-lg font-semibold">Paid Bill</h1>
-                  </MyLink>
-                </li>
-                <li className="mx-1 px-2">
-                  <MyLink to="/payment" className="flex gap-2">
-                    <h1 className="text-lg font-semibold">Payment</h1>
-                  </MyLink>
-                </li>
               </>
             )}
           </ul>
@@ -125,7 +105,7 @@ const Navbar = () => {
           ) : (
             <div>
               <button className="bg-purple-500 text-white px-4 py-2 rounded-md font-semibold cursor-pointer">
-                <Link to={"/login"}>Log in</Link>
+                <Link to={"/register"}>Log in</Link>
               </button>
             </div>
           )}

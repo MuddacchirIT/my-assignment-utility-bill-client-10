@@ -83,17 +83,17 @@ const BillDetails = () => {
           <div className="flex justify-center space-x-20">
             <div className="flex justify-center gap-2.5">
               <div className="mb-10">
-                <h2 className="text-5xl font-bold">{title}</h2>
+                <h2 className="text-3xl font-bold">{title}</h2>
               </div>
             </div>
             <div className="flex justify-center gap-2.5">
               <div>
-                <h2 className="text-5xl font-bold">{location}</h2>
+                <h2 className="text-3xl font-bold">{location}</h2>
               </div>
             </div>
             <div className=" gap-2.5">
               <div>
-                <h2 className="text-3xl font-bold">{date}</h2>
+                <h2 className="text-xl font-bold">{date}</h2>
               </div>
               <div>
                 <h2 className="text-3xl font-bold">{company_email}</h2>

@@ -4,8 +4,6 @@ import BillDetails from "../components/BillDetails";
 import ErrorPage from "../components/ErrorPage";
 import Login from "../components/Login";
 import MyBills from "../components/MyBills";
-import MyPaid from "../components/MyPaid.jsx";
-import Payment from "../components/Payment.jsx";
 import Register from "../components/Register";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
@@ -31,14 +29,6 @@ const router = createBrowserRouter([
       {
         path: "/mybills",
         element: <MyBills></MyBills>,
-      },
-      {
-        path: "/mypaid",
-        element: <MyPaid></MyPaid>,
-      },
-      {
-        path: "/payment",
-        element: <Payment></Payment>,
       },
       {
         path: "/login",
