@@ -33,9 +33,13 @@ const MyBills = () => {
             if (data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "Your bill has been deleted.",
                 icon: "success",
               });
+              const remainingPaidList = myPaid.filter(
+                (onlyMe) => onlyMe._id !== _id
+              );
+              setMyPaid(remainingPaidList);
             }
           });
       }
@@ -88,7 +92,7 @@ const MyBills = () => {
                 <th>
                   <button
                     onClick={() => handlePayBillsDelete(onlyMe._id)}
-                    className="btn btn-ghost btn-xs"
+                    className="btn btn-ghost btn-xs border-red-600"
                   >
                     Remove
                   </button>

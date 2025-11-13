@@ -100,12 +100,12 @@ const Navbar = () => {
               onClick={handleLogOut}
               className="bg-purple-500 text-white px-4 py-2 rounded-md font-semibold cursor-pointer"
             >
-              <Link to={"/login"}>Log Out</Link>
+              <Link to={"/register"}>Log Out</Link>
             </a>
           ) : (
             <div>
               <button className="bg-purple-500 text-white px-4 py-2 rounded-md font-semibold cursor-pointer">
-                <Link to={"/register"}>Log in</Link>
+                <Link to={"/login"}>Log in</Link>
               </button>
             </div>
           )}

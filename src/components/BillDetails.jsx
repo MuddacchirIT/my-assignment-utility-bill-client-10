@@ -18,6 +18,7 @@ const BillDetails = () => {
   const payModalRef = useRef(null);
   const { user } = use(AuthContext);
   const [billPaid, setBillPaid] = useState([]);
+
   useEffect(() => {
     fetch(`http://localhost:3000/payment/bybill/${billID}`)
       .then((res) => res.json())
@@ -61,6 +62,9 @@ const BillDetails = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          nowPay._id = data.insertedId;
+          const newPayment = [...billPaid, nowPay];
+          setBillPaid(newPayment);
         }
       });
   };
