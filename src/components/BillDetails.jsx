@@ -20,7 +20,7 @@ const BillDetails = () => {
   const [billPaid, setBillPaid] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/payment/bybill/${billID}`)
+    fetch(`https://my-assignment-utility-bill-server-1.vercel.app`)
       .then((res) => res.json())
       .then((data) => {
         console.log("paid info", data);
@@ -44,7 +44,7 @@ const BillDetails = () => {
       buyer_image: user?.photoURL,
       buyer_amount: amount,
     };
-    fetch("http://localhost:3000/payment", {
+    fetch("https://my-assignment-utility-bill-server-1.vercel.app/payment", {
       method: "POST",
       headers: {
         "content-type": "application/json",

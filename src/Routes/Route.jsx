@@ -23,7 +23,9 @@ const router = createBrowserRouter([
       {
         path: "/billdetails/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/bills/${params.id}`),
+          fetch(
+            `https://my-assignment-utility-bill-server-1.vercel.app/bills/${params.id}`
+          ),
         element: <BillDetails></BillDetails>,
       },
       {

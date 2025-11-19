@@ -6,7 +6,9 @@ const MyBills = () => {
   const [myPaid, setMyPaid] = useState([]);
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/payment?email=${user.email}`).then((res) =>
+      fetch(
+        `https://my-assignment-utility-bill-server-1.vercel.app/payment?email=${user.email}`
+      ).then((res) =>
         res.json().then((data) => {
           console.log(data);
           setMyPaid(data);
@@ -25,9 +27,12 @@ const MyBills = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/payment/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://my-assignment-utility-bill-server-1.vercel.app/bills/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
@@ -105,5 +110,4 @@ const MyBills = () => {
     </div>
   );
 };
-
 export default MyBills;

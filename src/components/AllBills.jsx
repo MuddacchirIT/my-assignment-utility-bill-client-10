@@ -1,8 +1,8 @@
 import { use } from "react";
 import Card from "./Card";
-const AllBillsPromise = fetch("http://localhost:3000/bills").then((res) =>
-  res.json()
-);
+const AllBillsPromise = fetch(
+  "https://my-assignment-utility-bill-server-1.vercel.app/bills"
+).then((res) => res.json());
 const AllBills = () => {
   const cards = use(AllBillsPromise);
   return (

@@ -1,7 +1,7 @@
 import LatestBills from "../components/LatestBills";
-const latestBillsPromise = fetch("http://localhost:3000/latest-bills").then(
-  (res) => res.json()
-);
+const latestBillsPromise = fetch(
+  "https://my-assignment-utility-bill-server-1.vercel.app/latest-bills"
+).then((res) => res.json());
 const Home = () => {
   return (
     <div>

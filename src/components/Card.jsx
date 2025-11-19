@@ -1,10 +1,15 @@
 import MyLink from "./MyLink";
 const Card = ({ card }) => {
-  const { _id, category, amount, image, date } = card;
+  const { _id, category, amount, buyer_image, image, date } = card;
+  console.log(buyer_image);
   return (
     <div className="card bg-base-100 shadow-md p-3 rounded-lg transform transition-transform duration-300 hover:-translate-y-2">
       <figure className="h-60 overflow-hidden">
-        <img className="w-full object-cover" src={image} alt="appCard" />
+        <img
+          className="w-full object-cover"
+          src={buyer_image || image}
+          alt="appCard"
+        />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{category}</h2>

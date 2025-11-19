@@ -16,7 +16,7 @@ const Register = () => {
           image: result.user.photoURL,
         };
         // create user in the database
-        fetch("http://localhost:3000/users", {
+        fetch("https://my-assignment-utility-bill-server-1.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
